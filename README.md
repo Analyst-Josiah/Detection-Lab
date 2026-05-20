@@ -77,20 +77,20 @@ Internet (Attackers)
    - **Action:** Allow
 3. Start the VM
 
-### Step 3 — Configure Microsoft Sentinel
+### Step 3- Configure Microsoft Sentinel
 1. Create a Sentinel workspace
 2. Connect the **Windows Security Events** data connector
 3. Create an **Analytics Rule** for EventID 4624 (successful logon, logon type 10)
 
-### Step 4 — Trigger the Alert
+### Step 4- Trigger the Alert
 1. RDP into the VM from your machine using `mstsc`
 2. Check **Microsoft Defender → Alerts** for the triggered rule
 
-### Step 5 — Harden the VM
+### Step 5- Harden the VM
 1. Return to **NSG → Inbound rules**
 2. Change the RDP rule Action from **Allow** → **Deny**
 
-### Step 6 — Threat Hunt with KQL
+### Step 6- Threat Hunt with KQL
 Run the following in **Sentinel → Logs** to find real brute-force attackers:
 
 ```kql
@@ -117,21 +117,21 @@ Within **a few hours** of exposure, the honeypot attracted **real automated atta
 | 92.63.197.9     | 9,957               |
 | 185.156.73.69   | 9,942               |
 
-The `185.156.73.x` and `92.63.197.x` subnets showed coordinated scanning — consistent with automated brute-force tooling.
+The `185.156.73.x` and `92.63.197.x` subnets showed coordinated scanning consistent with automated brute-force tooling.
 
 ---
 
 ## 🔍 KQL Queries
 
 See [`/kql/`](./kql/) for:
-- `brute_force_hunt.kql` — Top attacking IPs by failed login count
-- `rdp_success_detection.kql` — Sentinel analytics rule for successful RDP logins
+- `brute_force_hunt.kql` - Top attacking IPs by failed login count
+- `rdp_success_detection.kql` - Sentinel analytics rule for successful RDP logins
 
 ---
 
 ## 📸 Screenshots
 
-All evidence screenshots are in [`/screenshots/`](./screenshots/):
+All evidence screenshots are in [`/screenshots/`](./Screenshots/):
 
 | File | Description |
 |------|-------------|
@@ -146,16 +146,16 @@ All evidence screenshots are in [`/screenshots/`](./screenshots/):
 
 ## 💡 Lessons Learned
 
-- **Exposed RDP is an immediate target** — real attacks started within hours
-- **Sentinel end-to-end detection works** — from log ingestion to Defender alert
-- **KQL is essential** for SOC analysts — a 6-line query surfaced the full threat picture
+- **Exposed RDP is an immediate target** - real attacks started within hours
+- **Sentinel end-to-end detection works** - from log ingestion to Defender alert
+- **KQL is essential** for SOC analysts - a 6-line query surfaced the full threat picture
 - **NSG rules are the fastest containment tool** for network-level response
 
 ---
 
 ## 🔒 Recommendations
 
-- ❌ Never expose RDP publicly in production — use **Azure Bastion** or a VPN
+- ❌ Never expose RDP publicly in production - use **Azure Bastion** or a VPN
 - ✅ Enable **Just-in-Time (JIT) VM access** in Defender for Cloud
 - ✅ Enforce **MFA** for all VM logins
 - ✅ Set up Sentinel analytics rules for **failed login thresholds**
@@ -165,13 +165,13 @@ All evidence screenshots are in [`/screenshots/`](./screenshots/):
 
 ## 📄 Full Documentation
 
-See [`docs/Azure_SOC_Honeypot_Project.pdf`](./docs/Azure_SOC_Honeypot_Project.pdf) for the complete project writeup with all screenshots.
+See [`docs/Azure_SOC_Honeypot_Project.pdf`](./Azure_SOC_Honeypot_Project.pdf) for the complete project writeup with all screenshots.
 
 ---
 
 ## 🪪 License
 
-MIT License — feel free to fork and adapt for your own SOC lab.
+MIT License - feel free to fork and adapt for your own SOC lab.
 
 ---
 
