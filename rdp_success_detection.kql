@@ -1,9 +1,0 @@
-// Successful RDP Login Detection — Sentinel Analytics Rule
-// Detects successful remote desktop logins (EventID 4624, LogonType 10)
-// Use as the query in a Scheduled Analytics Rule in Microsoft Sentinel
-
-SecurityEvent
-| where TimeGenerated > ago(5m)
-| where EventID == 4624                          // Successful logon
-| where LogonType == 10                          // RemoteInteractive (RDP)
-| project TimeGenerated, Computer, Account, IpAddress, LogonType, EventID
